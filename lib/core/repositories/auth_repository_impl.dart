@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:qwenhairaiapp/core/errors/failures.dart';
-import 'package:qwenhairaiapp/features/auth/domain/repositories/auth_repository.dart';
+import 'package:qwenhairaiapp/core/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final Dio dio;

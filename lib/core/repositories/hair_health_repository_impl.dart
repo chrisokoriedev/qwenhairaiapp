@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:qwenhairaiapp/core/errors/failures.dart';
-import 'package:qwenhairaiapp/features/hair_health/domain/repositories/hair_health_repository.dart';
+import 'package:qwenhairaiapp/core/repositories/hair_health_repository.dart';
 
 class HairHealthRepositoryImpl implements HairHealthRepository {
   final Dio dio;

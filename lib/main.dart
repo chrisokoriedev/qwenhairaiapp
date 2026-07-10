@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qwenhairaiapp/core/constants/app_colors.dart';
+import 'package:qwenhairaiapp/features/style_try_on/presentation/hair_capture_screen.dart';
 import 'package:qwenhairaiapp/injection_container.dart' as di;
-import 'package:qwenhairaiapp/features/style_try_on/presentation/pages/hair_capture_screen.dart';
-import 'package:qwenhairaiapp/features/style_try_on/presentation/state/style_try_on_bloc.dart';
+import 'package:qwenhairaiapp/features/style_try_on/controller/style_try_on_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,8 +18,8 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<StyleTryOnBloc>(
-          create: (context) => di.sl<StyleTryOnBloc>(),
+        BlocProvider<StyleTryOnController>(
+          create: (context) => di.sl<StyleTryOnController>(),
         ),
       ],
       child: MaterialApp(

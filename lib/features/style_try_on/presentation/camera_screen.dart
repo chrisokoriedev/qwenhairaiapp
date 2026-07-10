@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qwenhairaiapp/core/constants/app_colors.dart';
-import 'package:qwenhairaiapp/features/style_try_on/presentation/state/style_try_on_bloc.dart';
-import 'package:qwenhairaiapp/features/style_try_on/presentation/state/style_try_on_event.dart';
-import 'package:qwenhairaiapp/features/style_try_on/presentation/state/style_try_on_state.dart';
+import 'package:qwenhairaiapp/features/style_try_on/controller/style_try_on_controller.dart';
+import 'package:qwenhairaiapp/features/style_try_on/state/style_try_on_event.dart';
+import 'package:qwenhairaiapp/features/style_try_on/state/style_try_on_state.dart';
 
 class CameraScreen extends StatefulWidget {
   const CameraScreen({super.key});
@@ -16,7 +16,7 @@ class _CameraScreenState extends State<CameraScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<StyleTryOnBloc>().add(const GetAvailableStylesEvent());
+    context.read<StyleTryOnController>().add(const GetAvailableStylesEvent());
   }
 
   @override
@@ -32,7 +32,7 @@ class _CameraScreenState extends State<CameraScreen> {
         elevation: 0,
         centerTitle: true,
       ),
-      body: BlocConsumer<StyleTryOnBloc, StyleTryOnState>(
+      body: BlocConsumer<StyleTryOnController, StyleTryOnState>(
         listener: (context, state) {
           if (state is StyleTryOnError) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -80,7 +80,7 @@ class _CameraScreenState extends State<CameraScreen> {
                 const SizedBox(height: 24),
                 ElevatedButton.icon(
                   onPressed: () {
-                    context.read<StyleTryOnBloc>().add(
+                    context.read<StyleTryOnController>().add(
                       const ProcessImageEvent(
                         imagePath: '/path/to/mock_image.png',
                         styleId: 'mock_style_1',

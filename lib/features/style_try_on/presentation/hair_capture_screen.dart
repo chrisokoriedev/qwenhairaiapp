@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:qwenhairaiapp/core/constants/app_colors.dart';
-import 'package:qwenhairaiapp/features/style_try_on/presentation/pages/render_viewer_screen.dart';
-import 'package:qwenhairaiapp/features/style_try_on/presentation/state/style_try_on_bloc.dart';
-import 'package:qwenhairaiapp/features/style_try_on/presentation/state/style_try_on_event.dart';
-import 'package:qwenhairaiapp/features/style_try_on/presentation/state/style_try_on_state.dart';
+import 'package:qwenhairaiapp/features/style_try_on/controller/style_try_on_controller.dart';
+import 'package:qwenhairaiapp/features/style_try_on/presentation/render_viewer_screen.dart';
+import 'package:qwenhairaiapp/features/style_try_on/state/style_try_on_event.dart';
+import 'package:qwenhairaiapp/features/style_try_on/state/style_try_on_state.dart';
 
 class HairCaptureScreen extends StatefulWidget {
   const HairCaptureScreen({super.key});
@@ -56,7 +56,7 @@ class _HairCaptureScreenState extends State<HairCaptureScreen> {
   void _submitReconstruction() {
     if (!_allImagesCaptured) return;
 
-    context.read<StyleTryOnBloc>().add(
+    context.read<StyleTryOnController>().add(
           GenerateHair3DModelEvent(
             frontPath: _capturedImages['Front']!,
             backPath: _capturedImages['Back']!,
@@ -79,7 +79,7 @@ class _HairCaptureScreenState extends State<HairCaptureScreen> {
         elevation: 0,
         centerTitle: true,
       ),
-      body: BlocConsumer<StyleTryOnBloc, StyleTryOnState>(
+      body: BlocConsumer<StyleTryOnController, StyleTryOnState>(
         listener: (context, state) {
           if (state is Hair3DLoaded) {
             Navigator.of(context).push(

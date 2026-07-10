@@ -1,17 +1,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qwenhairaiapp/core/errors/failures.dart';
-import 'package:qwenhairaiapp/features/style_try_on/domain/usecases/process_camera_image.dart';
-import 'package:qwenhairaiapp/features/style_try_on/domain/usecases/generate_hair_3d_render.dart';
+import 'package:qwenhairaiapp/core/usecases/process_camera_image.dart';
+import 'package:qwenhairaiapp/core/usecases/generate_hair_3d_render.dart';
 import 'package:qwenhairaiapp/core/repositories/style_try_on_repository.dart';
-import 'style_try_on_event.dart';
-import 'style_try_on_state.dart';
+import '../state/style_try_on_event.dart';
+import '../state/style_try_on_state.dart';
 
-class StyleTryOnBloc extends Bloc<StyleTryOnEvent, StyleTryOnState> {
+class StyleTryOnController extends Bloc<StyleTryOnEvent, StyleTryOnState> {
   final StyleTryOnRepository repository;
   final ProcessCameraImage processCameraImageUseCase;
   final GenerateHair3DRender generateHair3DRenderUseCase;
 
-  StyleTryOnBloc({
+  StyleTryOnController({
     required this.repository,
     required this.processCameraImageUseCase,
     required this.generateHair3DRenderUseCase,
