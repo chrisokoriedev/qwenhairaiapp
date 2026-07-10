@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:go_router/go_router.dart';
 import 'package:qwenhairaiapp/app/router.dart';
 import 'package:qwenhairaiapp/core/design_system/persistence/onboarding_cubit.dart';
 import 'package:qwenhairaiapp/core/design_system/theme/theme_controller.dart';

@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:connectivity_plus/connectivity_plus.dart';
 
 /// Queues failed write operations and retries them when connectivity returns.
 ///

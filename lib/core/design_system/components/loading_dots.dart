@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../tokens/app_motion.dart';
 
 enum LoadingDotsSize { sm, md, lg }
 

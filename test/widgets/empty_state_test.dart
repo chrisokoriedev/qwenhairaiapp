@@ -29,7 +29,7 @@ void main() {
             illustration: const Icon(Icons.image, size: 80),
             title: 'No scans',
             description: 'Start one.',
-            action: ('Start scan', () => tapped = true),
+            action: (label: 'Start scan', onPressed: () => tapped = true),
           ),
         ),
       ),

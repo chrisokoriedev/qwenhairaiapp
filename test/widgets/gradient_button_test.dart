@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:qwenhairaiapp/core/design_system/components/gradient_button.dart';
+import 'package:qwenhairaiapp/core/design_system/components/loading_dots.dart';
 
 void main() {
   testWidgets('renders label and responds to tap', (tester) async {
@@ -23,8 +24,8 @@ void main() {
 
   testWidgets('isLoading swaps label for LoadingDots', (tester) async {
     await tester.pumpWidget(
-      const MaterialApp(
-        home: Scaffold(body: GradientButton(label: 'Continue', isLoading: true)),
+       MaterialApp(
+        home: Scaffold(body: GradientButton(label: 'Continue', isLoading: true, onPressed: () {  },)),
       ),
     );
     expect(find.text('Continue'), findsNothing);

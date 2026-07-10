@@ -94,7 +94,8 @@ class _OfflineBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final brand = Theme.of(context).extension<HairTheme>()!;
+    final brand = Theme.of(context).extension<HairTheme>() ??
+        HairTheme.forBrightness(Theme.of(context).brightness);
     return Container(
       width: double.infinity,
       color: brand.colors.warning.withValues(alpha: 0.2),

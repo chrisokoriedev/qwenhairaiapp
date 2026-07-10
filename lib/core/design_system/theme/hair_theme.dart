@@ -27,7 +27,6 @@ class HairTheme extends ThemeExtension<HairTheme> {
 
   /// Default brand extension for the given brightness.
   factory HairTheme.forBrightness(Brightness brightness) {
-    final isDark = brightness == Brightness.dark;
     return HairTheme(
       colors: HairColors.forBrightness(brightness),
       spacing: const HairSpacing(),

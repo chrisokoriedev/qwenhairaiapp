@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../core/design_system/components/home_shell.dart';
@@ -30,6 +29,9 @@ GoRouter buildAppRouter(
       }
       if (status == OnboardingStatus.complete && goingToOnboarding) {
         return '/home/try-on';
+      }
+      if (state.matchedLocation == '/') {
+        return '/home/home';
       }
       return null;
     },

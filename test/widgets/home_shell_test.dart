@@ -55,20 +55,27 @@ class _FakeNavigationShell implements StatefulNavigationShell {
     goBranchCalls.add(index);
   }
 
-  @override
   Widget build(BuildContext context, Widget Function(int) navigatorBuilder) {
     return const SizedBox();
+  }
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return super.toString();
   }
 
   @override
   noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
-class _FakeConnectivity extends Connectivity {
+class _FakeConnectivity implements Connectivity {
   @override
   Stream<List<ConnectivityResult>> get onConnectivityChanged =>
       const Stream.empty();
   @override
   Future<List<ConnectivityResult>> checkConnectivity() async =>
       [ConnectivityResult.wifi];
+
+  @override
+  noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }

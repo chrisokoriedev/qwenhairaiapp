@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../theme/hair_theme.dart';
-import '../tokens/app_radii.dart';
 import '../tokens/app_spacing.dart';
 import 'loading_dots.dart';
 
@@ -31,7 +30,8 @@ class GradientButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final brand = Theme.of(context).extension<HairTheme>()!;
+    final brand = Theme.of(context).extension<HairTheme>() ??
+        HairTheme.forBrightness(Theme.of(context).brightness);
     final child = isLoading
         ? LoadingDots(
             size: LoadingDotsSize.sm,
@@ -64,10 +64,8 @@ class GradientButton extends StatelessWidget {
           onTap: _isEnabled ? onPressed : null,
           borderRadius: BorderRadius.circular(brand.radii.md),
           child: Container(
+            width: isExpanded ? double.infinity : null,
             height: 52,
-            constraints: isExpanded
-                ? const BoxConstraints.expand()
-                : const BoxConstraints(),
             padding: const EdgeInsets.symmetric(
               horizontal: AppSpacing.lg,
               vertical: AppSpacing.sm,
@@ -96,7 +94,8 @@ class GradientButton extends StatelessWidget {
   }
 
   Color _foregroundColor(BuildContext context) {
-    final brand = Theme.of(context).extension<HairTheme>()!;
+    final brand = Theme.of(context).extension<HairTheme>() ??
+        HairTheme.forBrightness(Theme.of(context).brightness);
     switch (variant) {
       case GradientButtonVariant.primary:
         return brand.colors.textPrimary;

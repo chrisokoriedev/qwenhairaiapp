@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qwenhairaiapp/core/constants/app_colors.dart';
+import 'package:qwenhairaiapp/core/design_system/components/hair_brand_app_bar.dart';
 import 'package:qwenhairaiapp/features/style_try_on/controller/style_try_on_controller.dart';
 import 'package:qwenhairaiapp/features/style_try_on/state/style_try_on_event.dart';
 import 'package:qwenhairaiapp/features/style_try_on/state/style_try_on_state.dart';
@@ -23,14 +24,9 @@ class _CameraScreenState extends State<CameraScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: AppBar(
-        title: const Text(
-          'Hair AI Style Try-On',
-          style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: AppColors.surface,
-        elevation: 0,
-        centerTitle: true,
+      appBar: HairBrandAppBar(
+        title: 'Hair AI Style Try-On',
+        showBrandMark: true,
       ),
       body: BlocConsumer<StyleTryOnController, StyleTryOnState>(
         listener: (context, state) {

@@ -21,7 +21,8 @@ class CaptureFrame extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final brand = Theme.of(context).extension<HairTheme>()!;
+    final brand = Theme.of(context).extension<HairTheme>() ??
+        HairTheme.forBrightness(Theme.of(context).brightness);
     final filled = imagePath != null;
     final bracketColor = filled
         ? Theme.of(context).colorScheme.primary
