@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/design_system/components/gradient_button.dart';
 import '../../../core/design_system/components/hair_brand_app_bar.dart';
 import '../../../core/design_system/persistence/onboarding_cubit.dart';
+import '../../../core/entities/hair_type.dart';
 import 'widgets/display_name_field.dart';
 import 'widgets/hair_type_picker.dart';
 
@@ -71,7 +72,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 label: 'Continue',
                 isExpanded: true,
                 onPressed: _isValid
-                    ? () => context.read<OnboardingCubit>().complete()
+                    ? () => context.read<OnboardingCubit>().complete(
+                          _nameController.text.trim(),
+                          _hairType!,
+                        )
                     : null,
               ),
             ],

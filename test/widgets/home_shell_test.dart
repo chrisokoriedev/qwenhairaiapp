@@ -43,7 +43,7 @@ void main() {
   });
 }
 
-class _FakeNavigationShell implements StatefulNavigationShell {
+class _FakeNavigationShell extends StatefulWidget implements StatefulNavigationShell {
   _FakeNavigationShell({required this.currentIndex});
 
   @override
@@ -60,12 +60,17 @@ class _FakeNavigationShell implements StatefulNavigationShell {
   }
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return super.toString();
-  }
+  State<StatefulWidget> createState() => _FakeNavigationShellState();
 
   @override
   noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
+class _FakeNavigationShellState extends State<_FakeNavigationShell> {
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox();
+  }
 }
 
 class _FakeConnectivity implements Connectivity {
