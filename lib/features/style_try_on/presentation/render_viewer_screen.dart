@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
 import 'package:qwenhairaiapp/core/constants/app_colors.dart';
+import 'package:qwenhairaiapp/core/design_system/components/gradient_button.dart';
+import 'package:qwenhairaiapp/core/design_system/components/hair_brand_app_bar.dart';
 import 'package:qwenhairaiapp/core/entities/hair_3d_render.dart';
 
 class RenderViewerScreen extends StatelessWidget {
@@ -15,15 +17,11 @@ class RenderViewerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: AppBar(
-        title: const Text(
-          '3D Hair Render',
-          style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: AppColors.surface,
-        elevation: 0,
+      appBar: HairBrandAppBar(
+        title: '3D Hair Render',
+        showBrandMark: false,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
@@ -81,44 +79,29 @@ class RenderViewerScreen extends StatelessWidget {
                 Row(
                   children: [
                     Expanded(
-                      child: ElevatedButton.icon(
+                      child: GradientButton(
+                        label: 'Share',
+                        variant: GradientButtonVariant.secondary,
+                        icon: Icons.share_outlined,
                         onPressed: () {
                           // Handle share action
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('Sharing 3D Model...')),
                           );
                         },
-                        icon: const Icon(Icons.share_outlined),
-                        label: const Text('Share'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.surface,
-                          foregroundColor: AppColors.textPrimary,
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
                       ),
                     ),
                     const SizedBox(width: 16),
                     Expanded(
-                      child: ElevatedButton.icon(
+                      child: GradientButton(
+                        label: 'AR Mode',
+                        icon: Icons.view_in_ar_outlined,
                         onPressed: () {
                           // Handle AR preview
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('Entering Augmented Reality...')),
                           );
                         },
-                        icon: const Icon(Icons.view_in_ar_outlined),
-                        label: const Text('AR Mode'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary,
-                          foregroundColor: AppColors.textPrimary,
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
                       ),
                     ),
                   ],
