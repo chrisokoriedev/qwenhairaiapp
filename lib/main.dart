@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qwenhairaiapp/core/constants/app_colors.dart';
 import 'package:qwenhairaiapp/injection_container.dart' as di;
-import 'package:qwenhairaiapp/features/style_try_on/presentation/pages/camera_screen.dart';
+import 'package:qwenhairaiapp/features/style_try_on/presentation/pages/hair_capture_screen.dart';
 import 'package:qwenhairaiapp/features/style_try_on/presentation/state/style_try_on_bloc.dart';
 
 void main() async {
@@ -34,7 +34,7 @@ class MainApp extends StatelessWidget {
           ),
           scaffoldBackgroundColor: AppColors.background,
         ),
-        home: const CameraScreen(),
+        home: const HairCaptureScreen(),
       ),
     );
   }

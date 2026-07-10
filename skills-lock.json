@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "skills": {
+    "qwencloud-image-generation": {
+      "source": "qwencloud/qwencloud-ai",
+      "sourceType": "github",
+      "skillPath": "skills/image/qwencloud-image-generation/SKILL.md",
+      "computedHash": "862ff2dc407b91c7083d78aac500dc51404f33289248a89a4f11dc1406473062"
+    },
+    "qwencloud-model-selector": {
+      "source": "qwencloud/qwencloud-ai",
+      "sourceType": "github",
+      "skillPath": "skills/models/qwencloud-model-selector/SKILL.md",
+      "computedHash": "67b52c1bca308cfee60d902cd78d3ab542a7781542f82db59a6df92fed2bd301"
+    },
+    "qwencloud-video-generation": {
+      "source": "qwencloud/qwencloud-ai",
+      "sourceType": "github",
+      "skillPath": "skills/video/qwencloud-video-generation/SKILL.md",
+      "computedHash": "43158cba662af47d35d361bf134ee6acae17e0501a1a07b523e85b7833098c2d"
+    },
+    "qwencloud-vision": {
+      "source": "qwencloud/qwencloud-ai",
+      "sourceType": "github",
+      "skillPath": "skills/vision/qwencloud-vision/SKILL.md",
+      "computedHash": "1e293295c66c811137cf63e888249b9957001f1706827d6995c44fa6dc3c76ba"
+    }
+  }
+}
