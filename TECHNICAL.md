@@ -25,8 +25,8 @@ graph TD
     end
 
     subgraph Integrations & Messaging
-        Workers <--> Paystack[Paystack Payment Gateway]
         n8n[n8n Workflow Automation] <--> WAHA[WAHA WhatsApp HTTP API]
+        Workers <--> WAHA
     end
 
     UI -->|Upload Photos / Request Analysis| API
@@ -46,9 +46,25 @@ graph TD
 | **AI Models** | Qwen AI (DashScope API) | Visual analysis, spatial perception, object grounding, and image generation. |
 | **Background Jobs** | BullMQ & Redis | Message-driven async queue processing for heavy AI tasks. |
 | **Automation** | n8n & WAHA (WhatsApp HTTP API) | Flow orchestration and automated WhatsApp coaching. |
-| **Payments** | Paystack | Secure payment processing for premium features and bookings. |
 | **Reporting** | PDFKit | On-the-fly PDF dossier generation for hair health. |
 | **Documentation** | Swagger / OpenAPI | Rigid backend API endpoint specification and documentation. |
+
+---
+
+## 🎯 Qwen Hackathon Tracks Alignment
+
+HairPredict is custom-engineered to meet and demonstrate the core competencies of the following Qwen Cloud Tracks:
+
+### 1. Track 4: Autopilot Agent
+HairPredict operates as an end-to-end autonomous business agent that converts ambiguous, unstructured camera inputs into a structured operational workflow:
+- **Unstructured Visual Analysis**: Using Qwen Vision models to parse multi-angle camera scans, extract spatial texture details, and output objective diagnostic metrics.
+- **Autonomous Tool Invocation**: Automatically invokes **PDFKit** to compile a personalized dossier, and triggers **n8n + WAHA** messaging pipelines to enroll the user in a targeted WhatsApp coaching flow.
+- **Production Readiness**: Heavy AI computations and rendering tasks are asynchronously handled via **BullMQ** and **Redis**, preventing main-thread blocking and ensuring scale and stability.
+
+### 2. Track 1: MemoryAgent
+The automated coaching and follow-up routines adapt to user history and preferences over cross-session, multi-turn interactions:
+- **Persistent Texture & Preferences Memory**: Retains the user's hair type, chemical treatment history, and routine preferences.
+- **Cross-Session Optimization**: Learns from daily feedback collected via WhatsApp and incrementally refines routine recommendations, ensuring increasingly accurate trichology decisions.
 
 ---
 
@@ -80,7 +96,6 @@ To prevent main thread blocking during intensive AI tasks:
 ## 🔄 Integrations & Automations
 
 - **WhatsApp Coaching**: Connected via **n8n** workflows and **WAHA** (WhatsApp HTTP API) to automatically send daily routines and follow-up checks.
-- **Localized E-commerce**: Integrated **Paystack** for booking local trichologists and purchasing recommended products.
 - **Health Dossiers**: Custom PDF dossiers are compiled on-the-fly via **PDFKit** to outline diagnostics and hair timelines.
 
 ---
