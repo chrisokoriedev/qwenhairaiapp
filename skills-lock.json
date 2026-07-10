@@ -24,6 +24,12 @@
       "sourceType": "github",
       "skillPath": "skills/vision/qwencloud-vision/SKILL.md",
       "computedHash": "1e293295c66c811137cf63e888249b9957001f1706827d6995c44fa6dc3c76ba"
+    },
+    "using-fastlane-in-flutter-and-ci": {
+      "source": "rodydavis/skills",
+      "sourceType": "github",
+      "skillPath": "skills/fastlane-and-flutter/SKILL.md",
+      "computedHash": "7ae852f44929f4e0ad77b077ce110b57b28958e0de8df816156bfb9a53106f0e"
     }
   }
 }
