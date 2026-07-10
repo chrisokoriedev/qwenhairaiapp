@@ -1,0 +1,46 @@
+import 'package:get_it/get_it.dart';
+import 'package:dio/dio.dart';
+import 'package:qwenhairaiapp/core/repositories/style_try_on_repository.dart';
+import 'package:qwenhairaiapp/core/repositories/style_try_on_repository_impl.dart';
+import 'package:qwenhairaiapp/features/style_try_on/domain/usecases/process_camera_image.dart';
+import 'package:qwenhairaiapp/features/style_try_on/presentation/state/style_try_on_bloc.dart';
+import 'package:qwenhairaiapp/features/auth/domain/repositories/auth_repository.dart';
+import 'package:qwenhairaiapp/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:qwenhairaiapp/features/hair_health/domain/repositories/hair_health_repository.dart';
+import 'package:qwenhairaiapp/features/hair_health/data/repositories/hair_health_repository_impl.dart';
+
+final sl = GetIt.instance;
+
+Future<void> init() async {
+  // Features - Style Try On
+  // Bloc
+  sl.registerFactory(
+    () => StyleTryOnBloc(
+      repository: sl(),
+      processCameraImageUseCase: sl(),
+    ),
+  );
+
+  // Use cases
+  sl.registerLazySingleton(() => ProcessCameraImage(sl()));
+
+  // Repositories
+  sl.registerLazySingleton<StyleTryOnRepository>(
+    () => StyleTryOnRepositoryImpl(dio: sl()),
+  );
+  sl.registerLazySingleton<AuthRepository>(
+    () => AuthRepositoryImpl(dio: sl()),
+  );
+  sl.registerLazySingleton<HairHealthRepository>(
+    () => HairHealthRepositoryImpl(dio: sl()),
+  );
+
+  // External / Core Network Client
+  sl.registerLazySingleton<Dio>(() {
+    final dio = Dio();
+    dio.options.baseUrl = 'https://api.qwenhairai.com/v1';
+    dio.options.connectTimeout = const Duration(seconds: 10);
+    dio.options.receiveTimeout = const Duration(seconds: 10);
+    return dio;
+  });
+}

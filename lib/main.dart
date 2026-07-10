@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qwenhairaiapp/core/constants/app_colors.dart';
+import 'package:qwenhairaiapp/injection_container.dart' as di;
+import 'package:qwenhairaiapp/features/style_try_on/presentation/pages/camera_screen.dart';
+import 'package:qwenhairaiapp/features/style_try_on/presentation/state/style_try_on_bloc.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   runApp(const MainApp());
 }
 
@@ -9,11 +16,25 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<StyleTryOnBloc>(
+          create: (context) => di.sl<StyleTryOnBloc>(),
         ),
+      ],
+      child: MaterialApp(
+        title: 'Qwen Hair AI',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: const ColorScheme.dark(
+            primary: AppColors.primary,
+            secondary: AppColors.accent,
+            surface: AppColors.surface,
+          ),
+          scaffoldBackgroundColor: AppColors.background,
+        ),
+        home: const CameraScreen(),
       ),
     );
   }
