@@ -16,6 +16,7 @@ import 'package:qwenhairaiapp/core/repositories/style_try_on_repository.dart';
 import 'package:qwenhairaiapp/core/repositories/style_try_on_repository_impl.dart';
 import 'package:qwenhairaiapp/core/usecases/generate_hair_3d_render.dart';
 import 'package:qwenhairaiapp/core/usecases/process_camera_image.dart';
+import 'package:qwenhairaiapp/features/diagnostics/controller/diagnostics_cubit.dart';
 import 'package:qwenhairaiapp/features/style_try_on/controller/style_try_on_controller.dart';
 
 final sl = GetIt.instance;
@@ -43,15 +44,21 @@ Future<void> init() async {
   sl.registerLazySingleton(() => ProcessCameraImage(sl()));
   sl.registerLazySingleton(() => GenerateHair3DRender(sl()));
 
+  // ── Diagnostics ────────────────────────────────────────────────────
+  sl.registerFactory(() => DiagnosticsCubit(sl()));
+
+  // QwenCloudClient — must be registered before repositories that depend on it
+  sl.registerLazySingleton(() => QwenCloudClient(sl()));
+
   // Repositories
   sl.registerLazySingleton<StyleTryOnRepository>(
-    () => StyleTryOnRepositoryImpl(dio: sl()),
+    () => StyleTryOnRepositoryImpl(dio: sl(), qwenCloud: sl()),
   );
   sl.registerLazySingleton<AuthRepository>(
     () => AuthRepositoryImpl(dio: sl()),
   );
   sl.registerLazySingleton<HairHealthRepository>(
-    () => HairHealthRepositoryImpl(dio: sl()),
+    () => HairHealthRepositoryImpl(dio: sl(), qwenCloud: sl()),
   );
 
   // ── External / Core Network Client ──────────────────────────────────
@@ -62,6 +69,4 @@ Future<void> init() async {
     dio.options.receiveTimeout = const Duration(seconds: 10);
     return dio;
   });
-
-  sl.registerLazySingleton(() => QwenCloudClient(sl()));
 }

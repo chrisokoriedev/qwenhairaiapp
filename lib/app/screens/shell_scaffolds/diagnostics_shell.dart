@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/design_system/components/empty_state.dart';
-import '../../../core/design_system/components/hair_brand_app_bar.dart';
+import '../../../features/diagnostics/controller/diagnostics_cubit.dart';
+import '../../../features/diagnostics/presentation/diagnostics_screen.dart';
+import '../../../injection_container.dart';
 
 class DiagnosticsShell extends StatelessWidget {
   const DiagnosticsShell({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: HairBrandAppBar(title: 'Diagnostics'),
-      body: const EmptyState(
-        illustration: Icon(Icons.health_and_safety_outlined, size: 80),
-        title: 'Diagnostics coming soon',
-        description:
-            'Qwen Vision analysis + PDF dossiers will be available in the next release.',
-      ),
+    return BlocProvider<DiagnosticsCubit>(
+      create: (_) => sl<DiagnosticsCubit>(),
+      child: const DiagnosticsScreen(),
     );
   }
 }
