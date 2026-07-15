@@ -61,10 +61,8 @@ class StyleTryOnController extends Bloc<StyleTryOnEvent, StyleTryOnState> {
     emit(const Hair3DProcessing());
     final result = await generateHair3DRenderUseCase(
       GenerateHair3DRenderParams(
-        frontPath: event.frontPath,
-        backPath: event.backPath,
-        leftPath: event.leftPath,
-        rightPath: event.rightPath,
+        faceScanPath: event.faceScanPath,
+        targetHairStylePath: event.targetHairStylePath,
       ),
     );
     switch (result) {

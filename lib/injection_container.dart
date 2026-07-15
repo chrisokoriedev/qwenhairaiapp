@@ -65,8 +65,8 @@ Future<void> init() async {
   sl.registerLazySingleton<Dio>(() {
     final dio = Dio();
     dio.options.baseUrl = 'https://api.qwenhairai.com/v1';
-    dio.options.connectTimeout = const Duration(seconds: 10);
-    dio.options.receiveTimeout = const Duration(seconds: 10);
+    dio.options.connectTimeout = const Duration(seconds: 100);
+    dio.options.receiveTimeout = const Duration(seconds: 100);
     return dio;
   });
 }

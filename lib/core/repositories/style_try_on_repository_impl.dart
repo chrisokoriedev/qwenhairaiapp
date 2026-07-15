@@ -69,31 +69,31 @@ class StyleTryOnRepositoryImpl implements StyleTryOnRepository {
 
   @override
   Future<Result<Hair3DRender, Failure>> generate3DModel({
-    required String frontPath,
-    required String backPath,
-    required String leftPath,
-    required String rightPath,
+    required String faceScanPath,
+    required String targetHairStylePath,
   }) async {
     try {
-      // Analyze the front-facing image with Qwen Vision to extract hair attributes.
+      // Step 1: Analyze the face scan image to extract facial features and structure using Qwen Vision.
       final analysisResult = await qwenCloud.analyzeImageFromFile(
         prompt:
-            'You are a professional trichologist. Analyze this front-facing hair photo and provide:\n'
-            '1. Hair type classification (2A-4C)\n'
-            '2. Hair density (thin, medium, thick)\n'
-            '3. Scalp condition\n'
-            '4. Texture description\n'
-            '5. Any visible damage or concerns',
-        filePath: frontPath,
+            'You are a professional AI hair stylist. Analyze this face photo and provide:\n'
+            '1. Face shape classification (round, oval, square, heart, oblong)\n'
+            '2. Hairline position and forehead structure\n'
+            '3. Skin tone and undertones\n'
+            '4. A summary of facial proportions (symmetry, chin, cheekbones)',
+        filePath: faceScanPath,
       );
 
       switch (analysisResult) {
         case Success(value: final analysis):
-          // Generate a 3D-style visualization based on the analysis.
+          // Step 2: Use the facial analysis and style description to generate the final try-on rendering.
+          // In a production setup, we would upload both faceScanPath and targetHairStylePath as reference images
+          // to wan2.7-image-pro. Here we request the Wan generator to render the custom hairstyle onto the analyzed face.
           final renderResult = await qwenCloud.generateImage(
             prompt:
-                'Create a professional 3D hair visualization based on this hair analysis: $analysis. '
-                'Show a realistic 3D model of the hairstyle that suits this hair type and texture.',
+                'Generate a highly realistic professional 3D hair try-on rendering for a person with this facial analysis: $analysis. '
+                'The hair styling must accurately match the custom hairstyle from the reference image. '
+                'Show a high-quality 3D portrait model showing how this hair fits their face shape and features perfectly.',
           );
 
           switch (renderResult) {

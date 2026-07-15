@@ -11,24 +11,18 @@ class GenerateHair3DRender implements UseCase<Hair3DRender, GenerateHair3DRender
   @override
   Future<Result<Hair3DRender, Failure>> call(GenerateHair3DRenderParams params) async {
     return await repository.generate3DModel(
-      frontPath: params.frontPath,
-      backPath: params.backPath,
-      leftPath: params.leftPath,
-      rightPath: params.rightPath,
+      faceScanPath: params.faceScanPath,
+      targetHairStylePath: params.targetHairStylePath,
     );
   }
 }
 
 class GenerateHair3DRenderParams {
-  final String frontPath;
-  final String backPath;
-  final String leftPath;
-  final String rightPath;
+  final String faceScanPath;
+  final String targetHairStylePath;
 
   const GenerateHair3DRenderParams({
-    required this.frontPath,
-    required this.backPath,
-    required this.leftPath,
-    required this.rightPath,
+    required this.faceScanPath,
+    required this.targetHairStylePath,
   });
 }

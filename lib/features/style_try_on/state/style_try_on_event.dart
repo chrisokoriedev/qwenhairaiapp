@@ -17,15 +17,11 @@ class ProcessImageEvent extends StyleTryOnEvent {
 }
 
 class GenerateHair3DModelEvent extends StyleTryOnEvent {
-  final String frontPath;
-  final String backPath;
-  final String leftPath;
-  final String rightPath;
+  final String faceScanPath;
+  final String targetHairStylePath;
 
   const GenerateHair3DModelEvent({
-    required this.frontPath,
-    required this.backPath,
-    required this.leftPath,
-    required this.rightPath,
+    required this.faceScanPath,
+    required this.targetHairStylePath,
   });
 }

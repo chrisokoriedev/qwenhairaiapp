@@ -6,9 +6,7 @@ abstract class StyleTryOnRepository {
   Future<Result<List<StyleImage>, Failure>> getAvailableStyles();
   Future<Result<StyleImage, Failure>> processCameraImage(String imagePath, String styleId);
   Future<Result<Hair3DRender, Failure>> generate3DModel({
-    required String frontPath,
-    required String backPath,
-    required String leftPath,
-    required String rightPath,
+    required String faceScanPath,
+    required String targetHairStylePath,
   });
 }
